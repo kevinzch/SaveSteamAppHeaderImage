@@ -2,7 +2,7 @@
 // @name         Save Steam store app header image
 // @description  ****
 // @namespace    ****
-// @version      0.1
+// @version      0.11
 // @author       Kevin
 // @include      https://store.steampowered.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -21,6 +21,7 @@
             // Get url of header image
             let headerImgUrl = document.getElementsByClassName('game_header_image_full')[0].currentSrc;
 
+            // Get app's name
             let appName = document.getElementById('appHubAppName');
 
             // Empty Variables which will be reused in click event
@@ -49,7 +50,10 @@
 
                 let link = document.createElement('a');
                 link.href = imageURL;
-                link.download = appName.childNodes[0].textContent;
+
+                // Remove ':' from app's name and save image with it as jpg
+                link.download = appName.childNodes[0].textContent.replace(':','') + '.jpg';
+
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
